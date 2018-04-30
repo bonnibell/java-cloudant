@@ -66,7 +66,7 @@ public class DatabaseTest extends TestWithDbPerClass {
     public static void beforeAll() throws Exception {
         //replicate animaldb for tests
         com.cloudant.client.api.Replication r = account.replication();
-        r.source("https://clientlibs-test.cloudant.com/animaldb");
+        r.source(CloudantClientHelper.getReplicationSourceUrl("animaldb"));
         r.createTarget(true);
         r.target(dbResource.getDbURIWithUserInfo());
         r.trigger();

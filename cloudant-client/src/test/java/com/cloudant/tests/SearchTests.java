@@ -46,7 +46,7 @@ public class SearchTests extends TestWithDbPerClass {
     public static void setUp() throws Exception {
         // replicate the animals db for search tests
         com.cloudant.client.api.Replication r = account.replication();
-        r.source("https://clientlibs-test.cloudant.com/animaldb");
+        r.source(CloudantClientHelper.getReplicationSourceUrl("animaldb"));
         r.createTarget(true);
         r.target(dbResource.getDbURIWithUserInfo());
         r.trigger();

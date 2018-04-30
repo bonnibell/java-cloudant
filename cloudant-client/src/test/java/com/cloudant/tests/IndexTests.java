@@ -60,7 +60,7 @@ public class IndexTests extends TestWithDbPerClass {
 
         // create the movies-demo db for our index tests
         com.cloudant.client.api.Replication r = account.replication();
-        r.source("https://clientlibs-test.cloudant.com/movies-demo");
+        r.source(CloudantClientHelper.getReplicationSourceUrl("movies-demo"));
         r.createTarget(true);
         r.target(dbResource.getDbURIWithUserInfo());
         r.trigger();
