@@ -134,7 +134,7 @@ selected categories:
 
 1. Tests that do not need a database
 ```bash
-$ ./gradlew noDBTest
+$ ./gradlew unitTest
 ```
 1. For tests which run against Cloudant Local or the Cloudant Service
 ```bash
@@ -143,6 +143,10 @@ $ ./gradlew cloudantTest
 1. For tests which run only against the Cloudant Service
 ```bash
 $ ./gradlew cloudantServiceTest
+```
+1. For tests which run against CloudantService only (excludes unit tests)
+```bash
+$ ./gradlew integrationTest
 ```
 
 Note: you will need a Cloudant account to run tests against the Cloudant service.

@@ -83,7 +83,7 @@ test {
     }
 }
 
-task noDBTest(type: Test) {
+task unitTest(type: Test) {
     // Run unit tests that do not need a running database
     useJUnitPlatform {
         includeEngines 'junit-jupiter'
@@ -92,18 +92,26 @@ task noDBTest(type: Test) {
 }
 
 task cloudantTest(type: Test) {
-    // Run unit tests that do not need a running database
+    // Run tests that require Cloudant APIs, but not specifically CloudantLocal or CloudantService
     useJUnitPlatform {
         includeEngines 'junit-jupiter'
-        excludeTags 'RequiresCloudantService'
+        includeTags 'RequiresCloudant'
     }
 }
 
 task cloudantServiceTest(type: Test) {
-    // Run unit tests that do not need a running database
+    // Run all tests except Local or Couch specific APIs
     useJUnitPlatform {
         includeEngines 'junit-jupiter'
         excludeTags 'RequiresCloudantLocal', 'RequiresCouch'
+    }
+}
+
+task integrationTest(type: Test) {
+    // Run all live database tests against the service APIs
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter'
+        includeTags 'RequiresDB', 'RequiresCloudant', 'RequiresCloudantService'
     }
 }
 
